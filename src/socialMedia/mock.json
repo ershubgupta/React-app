@@ -1,0 +1,81 @@
+[{
+  "id": 1,
+  "name": "harry",
+  "lastMessage": "Suspendisse potenti. Nullam porttitor lacus at turpis.",
+  "isTyping": false,
+  "isActive": false,
+  "lastSeen": "12:11 PM",
+  "displayPicture": "https://i.pravatar.cc/150"
+}, {
+  "id": 2,
+  "name": "julie",
+  "lastMessage": "Sed ante. Vivamus tortor. Duis mattis egestas metus. Aenean fermentum.",
+  "isTyping": false,
+  "isActive": false,
+  "lastSeen": "3:02 PM",
+  "displayPicture": "https://i.pravatar.cc/151"
+}, {
+  "id": 3,
+  "name": "ross",
+  "lastMessage": "Donec quis orci eget orci vehicula condimentum. Curabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo.",
+  "isTyping": false,
+  "isActive": false,
+  "lastSeen": "12:34 AM",
+  "displayPicture": "https://i.pravatar.cc/152"
+}, {
+  "id": 4,
+  "name": "warren",
+  "lastMessage": "Phasellus in felis. Donec semper sapien a libero.",
+  "isTyping": false,
+  "isActive": false,
+  "lastSeen": "12:09 PM",
+  "displayPicture": "https://i.pravatar.cc/153"
+}, {
+  "id": 5,
+  "name": "mae",
+  "lastMessage": "Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl. Aenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum.",
+  "isTyping": false,
+  "isActive": false,
+  "lastSeen": "10:58 AM",
+  "displayPicture": "https://i.pravatar.cc/154"
+}, {
+  "id": 6,
+  "name": "ina",
+  "lastMessage": "Ut tellus. Nulla ut erat id mauris vulputate elementum. Nullam varius. Nulla facilisi. Cras non velit nec nisi vulputate nonummy.",
+  "isTyping": false,
+  "isActive": false,
+  "lastSeen": "4:49 AM",
+  "displayPicture": "https://i.pravatar.cc/155"
+}, {
+  "id": 7,
+  "name": "beaufort",
+  "lastMessage": "Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci. Nullam molestie nibh in lectus. Pellentesque at nulla. Suspendisse potenti. Cras in purus eu magna vulputate luctus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.",
+  "isTyping": false,
+  "isActive": false,
+  "lastSeen": "8:33 PM",
+  "displayPicture": "https://i.pravatar.cc/156"
+}, {
+  "id": 8,
+  "name": "ev",
+  "lastMessage": "Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo. Pellentesque viverra pede ac diam. Cras pellentesque volutpat dui. Maecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam. Suspendisse potenti. Nullam porttitor lacus at turpis.",
+  "isTyping": false,
+  "isActive": false,
+  "lastSeen": "2:32 PM",
+  "displayPicture": "https://i.pravatar.cc/157"
+}, {
+  "id": 9,
+  "name": "Ulrika",
+  "lastMessage": "Donec dapibus. Duis at velit eu est congue elementum. In hac habitasse platea dictumst.",
+  "isTyping": false,
+  "isActive": false,
+  "lastSeen": "4:26 PM",
+  "displayPicture": "https://i.pravatar.cc/158"
+}, {
+  "id": 10,
+  "name": "Winfield",
+  "lastMessage": "Nulla ut erat id mauris vulputate elementum.",
+  "isTyping": false,
+  "isActive": false,
+  "lastSeen": "4:36 PM",
+  "displayPicture": "https://i.pravatar.cc/159"
+}]

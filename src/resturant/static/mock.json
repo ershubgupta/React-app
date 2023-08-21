@@ -1,0 +1,111 @@
+[{
+  "id": 1,
+  "name": "Clerodendrum L.",
+  "description": "Quisque ut erat. Curabitur gravida nisi at nibh. In hac habitasse platea dictumst.",
+  "category": "Vision-oriented",
+  "price": 218,
+  "discount": 60,
+  "isNonVeg": true,
+  "rating": 1,
+  "image": "http://dummyimage.com/157x100.png/cc0000/ffffff",
+  "quantity": 0
+}, {
+  "id": 2,
+  "name": "Amberboa (Pers.) Less.",
+  "description": "Duis ac nibh. Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus. Suspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst. Maecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem.",
+  "category": "knowledge base",
+  "price": 195,
+  "discount": 17,
+  "isNonVeg": true,
+  "rating": 1,
+  "image": "http://dummyimage.com/150x100.png/ff4444/ffffff",
+  "quantity": 0
+}, {
+  "id": 3,
+  "name": "Eryngium articulatum Hook.",
+  "description": "Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est. Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros. Vestibulum ac est lacinia nisi venenatis tristique. Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue. Aliquam erat volutpat. In congue. Etiam justo.",
+  "category": "Multi-tiered",
+  "price": 191,
+  "discount": 32,
+  "isNonVeg": true,
+  "rating": 4,
+  "image": "http://dummyimage.com/118x100.png/cc0000/ffffff",
+  "quantity": 0
+}, {
+  "id": 4,
+  "name": "Angelica kingii (S. Watson) J.M. Coult. & Rose",
+  "description": "Vivamus tortor. Duis mattis egestas metus.",
+  "category": "full-range",
+  "price": 202,
+  "discount": 47,
+  "isNonVeg": false,
+  "rating": 4,
+  "image": "http://dummyimage.com/123x100.png/ff4444/ffffff",
+  "quantity": 0
+}, {
+  "id": 5,
+  "name": "Grammitis hookeri (Brack.) Copeland",
+  "description": "Nulla tempus. Vivamus in felis eu sapien cursus vestibulum.",
+  "category": "Focused",
+  "price": 223,
+  "discount": 60,
+  "isNonVeg": true,
+  "rating": 4,
+  "image": "http://dummyimage.com/233x100.png/ff4444/ffffff",
+  "quantity": 0
+}, {
+  "id": 6,
+  "name": "Eriogonum wrightii Torr. ex Benth.",
+  "description": "Maecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem. Quisque ut erat. Curabitur gravida nisi at nibh. In hac habitasse platea dictumst.",
+  "category": "transitional",
+  "price": 130,
+  "discount": 8,
+  "isNonVeg": true,
+  "rating": 5,
+  "image": "http://dummyimage.com/128x100.png/ff4444/ffffff",
+  "quantity": 0
+}, {
+  "id": 7,
+  "name": "Trachelospermum difforme (Walter) A. Gray",
+  "description": "Nulla facilisi. Cras non velit nec nisi vulputate nonummy. Maecenas tincidunt lacus at velit.",
+  "category": "secondary",
+  "price": 162,
+  "discount": 73,
+  "isNonVeg": false,
+  "rating": 4,
+  "image": "http://dummyimage.com/101x100.png/cc0000/ffffff",
+  "quantity": 0
+}, {
+  "id": 8,
+  "name": "Tamarix gallica L.",
+  "description": "In congue. Etiam justo.",
+  "category": "User-friendly",
+  "price": 115,
+  "discount": 44,
+  "isNonVeg": true,
+  "rating": 4,
+  "image": "http://dummyimage.com/243x100.png/5fa2dd/ffffff",
+  "quantity": 0
+}, {
+  "id": 9,
+  "name": "Selaginella weatherbiana R. Tryon",
+  "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin interdum mauris non ligula pellentesque ultrices. Phasellus id sapien in sapien iaculis congue. Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl. Aenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum. Curabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est.",
+  "category": "emulation",
+  "price": 103,
+  "discount": 94,
+  "isNonVeg": false,
+  "rating": 4,
+  "image": "http://dummyimage.com/200x100.png/ff4444/ffffff",
+  "quantity": 0
+}, {
+  "id": 10,
+  "name": "Hackelia deflexa (Wahlenb.) Opiz",
+  "description": "Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi. Integer ac neque. Duis bibendum. Morbi non quam nec dui luctus rutrum.",
+  "category": "Face to face",
+  "price": 270,
+  "discount": 11,
+  "isNonVeg": true,
+  "rating": 5,
+  "image": "http://dummyimage.com/123x100.png/ff4444/ffffff",
+  "quantity": 0
+}]
