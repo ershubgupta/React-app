@@ -1,41 +1,49 @@
-import React, { useState, useEffect } from "react";
-import SingleChatPreview from "../components/SingleChatPreview";
-import { IUserStatus } from "../redux/Types";
-import mock from "../mock.json";
+import { useState, useEffect } from "react";
 import { Link, Outlet, Route, Routes } from "react-router-dom";
-import ChatScreen from "../components/ChatScreen";
-import NoChatScreen from "../components/NoChatScreen";
-// import Error from "../components/Error";
-// import { io } from "socket.io-client";
 import { keyBy, map, merge, values } from "lodash";
 import { ImBin } from "react-icons/im";
-// import axios from "axios";
 import axiosConfig from "../../config/axiosConfig";
+import { IUserStatus } from "../redux/Types";
+import mock from "../mock.json";
+import SingleChatPreview from "../components/SingleChatPreview";
+import ChatScreen from "../components/ChatScreen";
+import NoChatScreen from "../components/NoChatScreen";
 import HowToUse from "../components/HowToUse";
-// import { socket } from "../components/socket";
+import { Store } from "react-notifications-component";
+import Notification from "../utils/Notification";
 
 function Chats(props: any) {
+  
   const socket = props.socket;
+  const [apiError, setApiError] = useState("");
+
   // const [chattingWith, setChattingWith] = useState("");
   const [onlineUser, setOnlineUsers] = useState<IUserStatus[]>([]);
   const [offlineUser, setOfflineUsers] = useState<IUserStatus[]>(mock);
 
   useEffect(() => {
-    axiosConfig("/users").then((response) => {
-      const res = response["data"];
-      console.log(res);
-      const list = map(res, (user) => ({
-        id: user._id,
-        name: user.name,
-        isActive: true,
-        lastSeen: user.timeStamp,
-        displayPicture: `https://i.pravatar.cc/15${
-          10 + Math.floor(Math.random() * 10)
-        }`,
-      }));
-      // console.log("list", list);
-      setOnlineUsers(list);
-    });
+    axiosConfig("/users")
+      .then((response) => {
+        const res = response["data"];
+        console.log(res);
+        const list = map(res, (user) => ({
+          id: user._id,
+          name: user.name,
+          isActive: true,
+          isTyping: false,
+          lastSeen: user.timeStamp,
+          displayPicture: `https://i.pravatar.cc/15${
+            10 + Math.floor(Math.random() * 10)
+          }`,
+        }));
+        // console.log("list", list);
+        setOnlineUsers(list);
+      })
+      .catch((error) => {
+        console.error(error.response);
+        setApiError(error.response.message);
+        Notification("Unable to fetch from API", "Error", "danger");
+      });
   }, []);
 
   useEffect(() => {
@@ -47,12 +55,15 @@ function Chats(props: any) {
           id: (10 + Math.floor(Math.random() * 10)).toString(),
           name: name,
           isActive: true,
+          isTyping: false,
           lastSeen: new Date().toString(),
           displayPicture: `https://i.pravatar.cc/15${
             10 + Math.floor(Math.random() * 10)
           }`,
         },
       ]);
+      Notification(`${name} is Online`, "", "default");
+
     });
 
     return () => {
@@ -64,6 +75,7 @@ function Chats(props: any) {
     socket.on("removeUser", (name: string) => {
       setOnlineUsers((prev) => prev.filter((user) => user.name !== name));
       console.log("Removed User: ", name);
+      Notification(`${name} is Offline`, "", "danger");
     });
 
     return () => {
@@ -80,18 +92,6 @@ function Chats(props: any) {
     merge(keyBy(onlineUser, "name"), keyBy(offlineUser, "name"))
   );
 
-  // const [userList, setUserList] = useState(
-  //   merge(keyBy(onlineUser, "name"), keyBy(offlineUser, "name"))
-  // );
-
-  // useEffect(() => {
-  //   socket.on("isTypingResponse", (typingUserList: string[]) => {
-
-  //     setUserList(userList);
-  //   }
-  //   );
-  // }, [socket]);
-
   return (
     <div className="h-screen w-screen ">
       <div className="relative p-8 overflow-hidden h-full w-full">
@@ -107,11 +107,7 @@ function Chats(props: any) {
           <ImBin onClick={props.onUserRemove} className="cursor-pointer" />
         </div>
         <div className="flex h-full z-10 relative shadow-xl bg-white">
-          <div
-            className="flex-auto w-2/6 overflow-auto relative"
-
-            // style={{ maxHeight: "calc(100vh - 58px)" }}
-          >
+          <div className="flex-auto w-2/6 overflow-auto relative">
             {userList.map((user) => (
               <Link
                 to={`/social/chat/${user.name.toLowerCase()}`}
@@ -132,7 +128,13 @@ function Chats(props: any) {
             <Routes>
               <Route
                 path="chat/:userName"
-                element={<ChatScreen socket={socket} users={userList} />}
+                element={
+                  <ChatScreen
+                    socket={socket}
+                    users={userList}
+                    onlineUser={onlineUser}
+                  />
+                }
               />
               <Route path="*" element={<NoChatScreen />} />
             </Routes>

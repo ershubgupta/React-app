@@ -1,16 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
-import mock from "../mock.json";
-// import SingleChatPreview from "../components/SingleChatPreview";
-// import axios from "axios";
 import axiosConfig from "../../config/axiosConfig";
-
-import { find } from "lodash";
 import { IMessage } from "../redux/Types";
-import ChatBody from "../components/ChatBody";
-import ChatFooter from "../components/ChatFooter";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { Avatar } from "@nextui-org/react";
+import ChatBody from "../components/ChatBody";
+import ChatFooter from "../components/ChatFooter";
 import {
   Dropdown,
   DropdownTrigger,
@@ -19,27 +14,30 @@ import {
   Button,
 } from "@nextui-org/react";
 import Loader from "./Loader/Loader";
+import Notification from "../utils/Notification";
 
 function ChatScreen(props: any) {
-  const [userListWhichAreTyping, setUserListWhichAreTyping] = useState<
-    string[]
-  >([]);
+  const [apiError, setApiError] = useState("");
   const [messages, setMessages] = useState<IMessage[]>([]);
   const lastMessageRef = useRef<null | HTMLDivElement>(null);
-  // const currentUser = props.currentUser;
-  // console.log(props.currentUser);
   const { userName } = useParams();
   const ownerName = localStorage.getItem("displayName") ?? "";
   const socket = props.socket;
 
-  const currentUser = props.users.find(
+  const currParticipant = props.users.find(
     (user: { name: string }) => user.name.toLowerCase() === userName
   )!;
 
   useEffect(() => {
-    axiosConfig(`/messages/${ownerName}&${userName}`).then((response) => {
-      setMessages(response.data);
-    });
+    axiosConfig(`/messages/${ownerName}&${userName}`)
+      .then((response) => {
+        setMessages(response.data);
+      })
+      .catch((error) => {
+        console.error(error.response);
+        setApiError(error.response.message);
+        Notification("Unable to fetch from API", "Error", "danger");
+      });
   }, [ownerName, userName]);
 
   useEffect(() => {
@@ -60,20 +58,31 @@ function ChatScreen(props: any) {
     lastMessageRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
+  const [isTyping, setIsTyping] = useState(false);
+
   useEffect(() => {
+    console.log(currParticipant);
     socket.on("isTypingResponse", (userList: string[]) => {
-      // setUserListWhichAreTyping(userList);
-      currentUser.isTyping = userList.includes(currentUser.name);
+      currParticipant.isTyping = userList.includes(currParticipant?.name);
+      setIsTyping(userList.includes(currParticipant?.name));
+      // console.log(userList, "is typing", currParticipant.isTyping);
     });
-  }, [currentUser, socket]);
+  }, [currParticipant, socket]);
 
   const deleteUserChats = () => {
     axiosConfig
       .delete(`/messages/${ownerName}&${userName}`)
       .then((response) => {
-        if (response.data === "ok") setMessages([]);
+        if (response.data === "ok") {
+          setMessages([]);
+          Notification("Messages deleted Successfully", "");
+        }
       })
-      .catch((error) => console.error(error.response));
+      .catch((error) => {
+        console.error(error.response);
+        setApiError(error.response.message);
+        Notification("Unable to fetch from API", "Error", "danger");
+      });
   };
 
   return (
@@ -86,19 +95,27 @@ function ChatScreen(props: any) {
           <Avatar
             isBordered
             showFallback
-            color={currentUser?.isActive ? "success" : "default"}
-            src={currentUser?.displayPicture}
+            color={currParticipant?.isActive ? "success" : "default"}
+            src={currParticipant?.displayPicture}
             className="w-14 h-14 inline-block"
           />
           <span className="text-md capitalize text-black inline-block ml-3 align-middle">
-            {currentUser?.name}
-            {currentUser?.isTyping && (
-              <i
-                className="text-sm block lowercase"
-                style={{ color: "#15803d" }}
-              >
-                typing...
-              </i>
+            {currParticipant?.name}
+            {!!props.onlineUser.find(
+              (item: { name: any }) => item.name === currParticipant?.name
+            ) ? (
+              isTyping ? (
+                <Loader />
+              ) : (
+                <i
+                  className="text-sm block lowercase"
+                  style={{ color: "#15803d" }}
+                >
+                  Online
+                </i>
+              )
+            ) : (
+              ""
             )}
           </span>
         </div>
@@ -133,15 +150,13 @@ function ChatScreen(props: any) {
         }}
       >
         <ChatBody messages={messages} ownerName={ownerName} />
-        {currentUser?.isTyping && (
-          <div className="relative h-3 text-left">
-            <Loader />
-          </div>
-          // <i className="text-green-500 text-sm block lowercase absolute bottom-2">typing...</i>
-        )}
+
         <div ref={lastMessageRef} />
       </div>
-      <div className="chatFoote" style={{ backgroundColor: "#e9e7e6" }}>
+      <div
+        className="chatFooter relative"
+        style={{ backgroundColor: "#e9e7e6" }}
+      >
         <ChatFooter
           userName={userName}
           ownerName={ownerName}

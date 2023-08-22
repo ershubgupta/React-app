@@ -1,11 +1,15 @@
 import "./App.css";
+import { ReactNotifications } from "react-notifications-component";
+import "react-notifications-component/dist/theme.css";
 import MainRouter from "./MainRouter";
 
-// import { io } from "socket.io-client";
-// const socket = io("http://localhost:4000");
-
 function App() {
-  return <MainRouter />;
+  return (
+    <>
+      <ReactNotifications />
+      <MainRouter />
+    </>
+  );
 }
 
 export default App;

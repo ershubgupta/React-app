@@ -3,7 +3,7 @@ import React, { useState } from "react";
 function ChatFooter(props: {
   userName: string | undefined;
   ownerName: string;
-  socket: any
+  socket: any;
 }) {
   const { userName, ownerName } = props;
   const [message, setMessage] = useState("");
@@ -11,15 +11,12 @@ function ChatFooter(props: {
   const socket = props.socket;
 
   const handleTyping = (e: any) => {
-    // console.log(e.target.value)
     if (e.target.value.length > 0) {
-      socket.emit("isTyping", userName);
+      socket.emit("isTyping", ownerName);
       console.log("use is typing");
-      
     } else {
-      socket.emit("isIdel", userName);
+      socket.emit("isIdel", ownerName);
       console.log("use is not typing");
-      // socket.emit("notTyping", `${userName} stopped typing`);
     }
   };
 
@@ -30,9 +27,7 @@ function ChatFooter(props: {
         messageText: message,
         participantName: userName?.toLowerCase(),
         ownerName: ownerName.toLowerCase(),
-        timeStamp: new Date(),
-        // id: `${socket.id}${Math.random()}`,
-        // socketID: socket.id,
+        timeStamp: new Date()
       });
     }
     setMessage("");

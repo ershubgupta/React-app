@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Chats from "./Chats";
 import { socket } from "../components/socket";
+import { Store } from "react-notifications-component";
+import Notification from "../utils/Notification";
 
 function SocialMedia(param: any) {
   const [userName, setUserName] = useState(
@@ -21,6 +23,7 @@ function SocialMedia(param: any) {
     setUserName(userName);
     // socket.connect();
     socket.emit("login", userName);
+    Notification("You are now logged in", "Congratulations", "info");
   };
 
   //  useEffect(() => {
@@ -40,6 +43,8 @@ function SocialMedia(param: any) {
     socket.emit("logout", userName);
     setUserName("");
     localStorage.setItem("displayName", "");
+    Notification("You are now logged out", "See You Soon", "info");
+
     // socket.close();
   };
 
