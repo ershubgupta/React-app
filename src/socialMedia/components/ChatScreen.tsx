@@ -23,10 +23,9 @@ function ChatScreen(props: any) {
   const { userName } = useParams();
   const ownerName = localStorage.getItem("displayName") ?? "";
   const socket = props.socket;
-
-  const currParticipant = props.users.find(
+  const [currParticipant, setCurrParticipant] = useState(props.users.find(
     (user: { name: string }) => user.name.toLowerCase() === userName
-  )!;
+  ));
 
   useEffect(() => {
     axiosConfig(`/messages/${ownerName}&${userName}`)
@@ -58,13 +57,17 @@ function ChatScreen(props: any) {
     lastMessageRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
-  const [isTyping, setIsTyping] = useState(false);
+  // const [isTyping, setIsTyping] = useState(false);
 
   useEffect(() => {
-    console.log(currParticipant);
+    // console.log(currParticipant);
     socket.on("isTypingResponse", (userList: string[]) => {
-      currParticipant.isTyping = userList.includes(currParticipant?.name);
-      setIsTyping(userList.includes(currParticipant?.name));
+      setCurrParticipant({
+        ...currParticipant,
+        isTyping: userList.includes(currParticipant?.name),
+      });
+      // currParticipant.isTyping = userList.includes(currParticipant?.name);
+      // setIsTyping(userList.includes(currParticipant?.name));
       // console.log(userList, "is typing", currParticipant.isTyping);
     });
   }, [currParticipant, socket]);
@@ -104,7 +107,7 @@ function ChatScreen(props: any) {
             {!!props.onlineUser.find(
               (item: { name: any }) => item.name === currParticipant?.name
             ) ? (
-              isTyping ? (
+              currParticipant.isTyping ? (
                 <Loader />
               ) : (
                 <i

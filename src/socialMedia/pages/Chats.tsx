@@ -9,7 +9,6 @@ import SingleChatPreview from "../components/SingleChatPreview";
 import ChatScreen from "../components/ChatScreen";
 import NoChatScreen from "../components/NoChatScreen";
 import HowToUse from "../components/HowToUse";
-import { Store } from "react-notifications-component";
 import Notification from "../utils/Notification";
 
 function Chats(props: any) {
@@ -28,7 +27,7 @@ function Chats(props: any) {
       .then((response) => {
         const res = response["data"];
         const filterOwnerNameFromList = res.filter((user: { name: string; }) => user.name !== props.userName)
-        console.log(res, filterOwnerNameFromList);
+        // console.log(res, filterOwnerNameFromList);
         const list = map(filterOwnerNameFromList, (user) => ({
           id: user._id,
           name: user.name,
@@ -88,10 +87,10 @@ function Chats(props: any) {
     };
   }, [socket]);
 
-  console.log(
-    "merered array",
-    sortBy(values(merge(keyBy(offlineUser, "name"), keyBy(onlineUser, "name"))), o => o.lastSeen)
-  );
+  // console.log(
+  //   "merered array",
+  //   sortBy(values(merge(keyBy(offlineUser, "name"), keyBy(onlineUser, "name"))), o => o.lastSeen)
+  // );
 
   const userList = sortBy(
     values(merge(keyBy(offlineUser, "name"), keyBy(onlineUser, "name"))),
