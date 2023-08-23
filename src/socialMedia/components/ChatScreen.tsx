@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
 import axiosConfig from "../../config/axiosConfig";
-import { IMessage } from "../redux/Types";
+import { IMessage, IUserStatus } from "../redux/Types";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { Avatar } from "@nextui-org/react";
 import ChatBody from "../components/ChatBody";
@@ -23,9 +23,21 @@ function ChatScreen(props: any) {
   const { userName } = useParams();
   const ownerName = localStorage.getItem("displayName") ?? "";
   const socket = props.socket;
-  const [currParticipant, setCurrParticipant] = useState(props.users.find(
-    (user: { name: string }) => user.name.toLowerCase() === userName
-  ));
+  const initialValue: IUserStatus = {
+    id: "",
+    name: "",
+    isActive: false,
+    lastSeen: ""
+  };
+  const [currParticipant, setCurrParticipant] = useState(initialValue);
+
+  useEffect(() => {
+    setCurrParticipant(
+      props.users.find(
+        (user: { name: string }) => user.name.toLowerCase() === userName
+      )
+    );
+  },[props.users, userName])
 
   useEffect(() => {
     axiosConfig(`/messages/${ownerName}&${userName}`)
