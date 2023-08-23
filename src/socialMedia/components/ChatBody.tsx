@@ -7,13 +7,12 @@ function ChatBody(props: {
 }) {
   const { messages, ownerName } = props;
   return (
-    <ul style={{height: "calc(100% - 0.75rem)"}}>
+    <ul>
       {messages.map((msg) =>
         msg.name === ownerName ? (
           <li
             key={msg.timeStamp}
             className="bg-white p-2 m-2 max-w-max block rounded-md ml-auto"
-            // key={msg.id}
           >
             {msg.messageText}
           </li>

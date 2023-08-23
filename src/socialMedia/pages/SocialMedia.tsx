@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Chats from "./Chats";
 import { socket } from "../components/socket";
-import { Store } from "react-notifications-component";
 import Notification from "../utils/Notification";
+import { useNavigate } from "react-router-dom";
 
 function SocialMedia(param: any) {
   const [userName, setUserName] = useState(
@@ -37,6 +37,7 @@ function SocialMedia(param: any) {
   //    };
   //  }, []);
   // console.log("activeUserList", activeUserList);
+  const navigate = useNavigate();
 
   const onUserRemove = () => {
     console.log("Remove userNamee");
@@ -44,8 +45,7 @@ function SocialMedia(param: any) {
     setUserName("");
     localStorage.setItem("displayName", "");
     Notification("You are now logged out", "See You Soon", "info");
-
-    // socket.close();
+    navigate("/social/chat");
   };
 
   useEffect(() => {

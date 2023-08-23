@@ -10,9 +10,9 @@ function SingleChatPreview(props: IUserStatus) {
         showFallback
         color={props.isActive ? "success" : "default"}
         src={props?.displayPicture}
-        className="flex-auto w-1/6 h-1/6"
+        className="flex-none w-1/6 h-1/6"
       />
-      <div className="userInfo ml-3 flex-auto w-5/6">
+      <div className="userInfo ml-3 grow w-5/6">
         <div className="flex justify-between items-center">
           <p className="text-lg text-black">{props.name}</p>
           <span className="lastSeenTime text-sm text-gray-500">

@@ -105,7 +105,7 @@ function Chats(props: any) {
         <div className="absolute top-1 left-8">
           <HowToUse />
         </div>
-        <div className="flex items-center absolute top-0 right-8 z-20 text-white">
+        <div className="flex items-center absolute top-1 right-8 z-20 text-white">
           {/* <div></div> */}
           <span className="text-md capitalize ml-1 mr-2 align-middle">
             Hello {props.userName}
