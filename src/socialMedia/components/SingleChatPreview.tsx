@@ -2,7 +2,6 @@ import { Avatar } from "@nextui-org/react";
 import { IUserStatus } from "../redux/Types";
 
 function SingleChatPreview(props: IUserStatus) {
-  // console.log(props.name, props.isActive)
   return (
     <div className="flex items-center p-4 border-b-1 border-gray-200">
       <Avatar
@@ -10,7 +9,7 @@ function SingleChatPreview(props: IUserStatus) {
         showFallback
         color={props.isActive ? "success" : "default"}
         src={props?.displayPicture}
-        className="flex-none w-1/6 h-1/6"
+        className="flex-none w-14 h-14"
       />
       <div className="userInfo ml-3 grow w-5/6">
         <div className="flex justify-between items-center">
